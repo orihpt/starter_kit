@@ -25,5 +25,10 @@
 			const name = await contract.name()
 			assert.equal(name, 'Color')
 		})
+
+		it('has a symbol', async() => {
+			const symbol = await contract.symbol()
+			assert.equal(symbol, 'COLOR')
+		})
 	})
 })
