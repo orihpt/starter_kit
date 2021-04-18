@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Web3 from 'web3'
 import './App.css';
+import Color from '../abis/Color.json'
 
 class App extends Component {
 
@@ -28,6 +29,17 @@ async loadBlockchainData() {
   // Load account
   const accounts = await web3.eth.getAccounts()
   this.setState({ account: accounts[0] })
+
+  const networkId = await web3.eth.net.getId()
+  const networkData = Color.networks[networkId]
+  if (networkData) {
+    const abi = Color.abi
+    const address = networkData.address
+    const contract = new web3.eth.Contract(abi, address)
+    console.log(contract)
+  } else {
+    window.alert("Smart contract not deployed to detected network.")
+  }
 }
 
 constructor(props) {
@@ -66,6 +78,10 @@ constructor(props) {
               </div>
             </main>
           </div>
+          <hr/>
+          <div className="row text-center">
+            <p> Tokens go here...</p>
+            </div>
         </div>
       </div>
     );
