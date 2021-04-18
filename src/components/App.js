@@ -92,7 +92,19 @@ constructor(props) {
           <div className="row">
             <main role="main" className="col-lg-12 d-flex text-center">
               <div className="content mr-auto ml-auto">
-
+                <h1> Issue Token </h1>
+                  <form>
+                    <input
+                      type='text'
+                      className='form-control mb-1'
+                      placeholder='e.g. #FFFFFF'
+                      />
+                      <input
+                        type='submit'
+                        className='btn btn-block btn-primary'
+                        value='MINT'
+                      />
+                  </form>
               </div>
             </main>
           </div>
@@ -100,8 +112,8 @@ constructor(props) {
           <div className="row text-center">
             { this.state.colors.map((color, key) => {
               return(
-                <div key = {key} class="col-md-3 mb-3">
-                <div class="token"></div>
+                <div key = {key} className="col-md-3 mb-3">
+                <div className="token" style={{ backgroundColor: color }}></div>
                 <div>{color}</div>
               </div>
               )
