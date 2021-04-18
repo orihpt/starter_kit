@@ -99,7 +99,12 @@ constructor(props) {
           <hr/>
           <div className="row text-center">
             { this.state.colors.map((color, key) => {
-              return (color)
+              return(
+                <div key = {key} class="col-md-3 mb-3">
+                <div class="token"></div>
+                <div>{color}</div>
+              </div>
+              )
             })}
             </div>
         </div>
