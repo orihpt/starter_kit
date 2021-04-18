@@ -57,6 +57,15 @@ async loadBlockchainData() {
   }
 }
 
+mint = (color) => {
+    this.state.contract.methods.mint(color).send({ from: this.state.account })
+    .once('receipt', (receipt) => {
+      this.setState({
+        colors: [...this.state.colors, color]
+      })
+    })
+}
+
 constructor(props) {
   super(props)
   this.state = {
@@ -93,11 +102,18 @@ constructor(props) {
             <main role="main" className="col-lg-12 d-flex text-center">
               <div className="content mr-auto ml-auto">
                 <h1> Issue Token </h1>
-                  <form>
+                  <form onSubmit={(event) => {
+                      event.preventDefault()
+                      const color = this.color.value
+                      this.mint(color)
+                  }}>
                     <input
                       type='text'
                       className='form-control mb-1'
                       placeholder='e.g. #FFFFFF'
+                      ref={(input) => {
+                        this.color = input
+                      }}
                       />
                       <input
                         type='submit'
